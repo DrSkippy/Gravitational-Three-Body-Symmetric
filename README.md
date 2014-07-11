@@ -13,4 +13,4 @@ sim.py takes two options:
     ./sim.py .1817 290 > data.csv; ./plots.r
 
 
-![Example Image][example.png]
+![Example Image][./example.png]
