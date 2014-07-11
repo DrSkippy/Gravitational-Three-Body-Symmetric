@@ -20,4 +20,4 @@ Vz = 0.1817
 
 time = 290 Periods
 
-![Example Image][/img/example.png]
+![alt text](/img/example.png "Example")
