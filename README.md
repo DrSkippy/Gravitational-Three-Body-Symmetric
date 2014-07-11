@@ -13,5 +13,9 @@ sim.py takes two options:
     ./sim.py .1817 290 > data.csv; ./plots.r
 
 
+Example Run
+===========
+Vz = 0.1817
+time = 290 Periods
 
 ![Example Image][/example.png]
