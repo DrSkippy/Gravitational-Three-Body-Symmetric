@@ -7,6 +7,7 @@ Examples:
 
 sim.py takes two options: 
     1) initial velocity of central mass
+    
     2) number of years for circling stars
 
     ./sim.py .17 190 > data.csv; ./plots.r
@@ -16,6 +17,7 @@ sim.py takes two options:
 Example Run
 ===========
 Vz = 0.1817
+
 time = 290 Periods
 
-![Example Image][/example.png]
+![Example Image][/img/example.png]
