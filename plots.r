@@ -1,9 +1,9 @@
 #!/usr/bin/env Rscript
 library(ggplot2)
 library(gridExtra)
-data <- read.csv("~/Projects/2014-07-09_3body/data.csv")
+data <- read.csv("./data.csv")
 b = ggplot(data)
-ptsize <- 0.8
+ptsize <- 0.2
 print(
   grid.arrange(
     b + geom_point(aes(r, vr), size=ptsize)

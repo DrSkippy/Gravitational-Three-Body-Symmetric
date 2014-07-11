@@ -1,0 +1,159 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage[group-separator={,}]{siunitx}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+%\usepackage{bm}
+%\usepackage{graphicx}
+
+\title{Symmetric Three-body Problem Notes}
+\author{Scott Hendrickson}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equations of Motion}
+
+\label{sec:intro}
+
+Potentials,
+
+\begin{eqnarray}
+U_{m m} & = & \frac{-Gmm}{2r} \\
+U_{\mu m} & = & \frac{-2G\mu mm}{\sqrt{r^2 + (z-y)^2}} \\
+\label{eq:potentials}
+\end{eqnarray}
+
+Kinetic Energy,
+
+\begin{eqnarray}
+T & = & \frac{1}{2} \mu m \dot{z}^2 + m \dot{y}^2 + m \dot{r}^2 + m(r\dot{\theta})^2
+\label{eq:potentials}
+\end{eqnarray}
+
+Lagrangian,
+
+\begin{eqnarray}
+\mathcal{L} & = & T - V \\
+& = & \frac{1}{2} \mu m \dot{z}^2 + m \dot{y}^2 + m \dot{r}^2 + m(r\dot{\theta})^2 + \frac{-Gmm}{2r} +  \frac{-2G\mu mm}{\sqrt{r^2 + (z-y)^2}}
+\label{eq:potentials}
+\end{eqnarray}
+
+\begin{eqnarray}
+\frac{\partial{\mathcal{L}}}{\partial{ \dot{z}}} & = & \mu m \dot{z} \\
+\frac{\partial{\mathcal{L}}}{\partial{ \dot{r}}} & = & 2m\dot{r} \\
+\frac{\partial{\mathcal{L}}}{\partial{ \dot{y}}} & = & 2m\dot{y} \\
+\frac{\partial{\mathcal{L}}}{\partial{ \dot{\theta}}} & = & 2mr^2\dot{\theta} \\
+\end{eqnarray}
+
+\begin{eqnarray}
+\frac{\partial{\mathcal{L}}}{\partial{z}} & = & \frac{2G \mu m^2 (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
+\frac{\partial{\mathcal{L}}}{\partial{r}} & = & 2mr\theta^2 - \frac{G m^2}{r^2} - \frac{2 G \mu m^2 r}{(r^2 + (z-y)^2)^{3/2}} \\
+\frac{\partial{\mathcal{L}}}{\partial{y}} & = & - \frac{2G \mu m^2 (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
+\frac{\partial{\mathcal{L}}}{\partial{\theta}} & = & 0 \\
+\end{eqnarray}
+
+Equations of motion,
+
+\begin{eqnarray}
+\ddot{z} & = & \frac{2G m (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
+\ddot{y} & = & \frac{G \mu m (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
+\ddot{r} & = & r\dot{\theta}^2 - Gm (\frac{1}{2r^2} + \frac{\mu r}{(r^2 + (z-y)^2)^{3/2}}) \\
+\ddot{\theta} & = & \frac{-2 \dot{r} \dot{\theta}}{r} \\
+\label{eq:mot}
+\end{eqnarray}
+
+
+%
+%\begin{table}
+%\caption{Fit parameters for Twitter, earthquake.}
+%\label{tab:pars}
+%\begin{tabular}{ | l | l |}
+%    \hline
+%    Parameter & Value  \\ \hline
+%    $t_0$ & fixxx sec\\ 
+%              & 2012-03-20 18:08:22 UTC\\
+%    $r_0$ & fixxx act/min\\ 
+%    $\alpha$ & 0.001152 sec$^{-1}$\\ 
+%    $\beta$ & 0.000220 sec$^{-1}$\\ \hline
+%    $t_{time_to_peak}$ & 26 min 30 sec \\ 
+%    $S_{vol}$ & 5,568,800 tweets \\
+%    $t_{1/2}$ & 92 min 01 sec \\
+%    $t_{avg}$ & 87 min 49 sec \\ \hline
+%\end{tabular}
+%\end{table}
+%
+%\section{Sigmoid Model}
+%\label{sec:sigmodel}
+%
+%%%%%%%%
+%%%%%%%\begin{figure}[h]
+%%%%%%%\begin{center}
+%%%%%%%	%%%%%
+%%%%%%%	%
+%%%%%%%	% http://cremeronline.com/LaTeX/minimaltikz.pdf
+%%%%%%%	%
+%%%%%%%	\begin{tikzpicture}[scale=1.1]]
+%%%%%%%	% arrows
+%%%%%%%	\draw [thick, <->] (0.25000000000000006, 0.4330127018922193) -- (1.25, 2.165063509461097) ;
+%%%%%%%	\draw [thick, <->] (1.75, 2.165063509461097) -- (2.75, 0.4330127018922193) ;
+%%%%%%%	\draw [thick, <->] (2.5, 0) -- (0.5, 0) ;
+%%%%%%%	% circles
+%%%%%%%	\draw [orange, ultra thick] (0,0) circle [radius=0.5];
+%%%%%%%	\draw [yellow, ultra thick] (1.5,2.598) circle [radius=0.5];
+%%%%%%%	\draw [green, ultra thick] (3,0) circle [radius=0.5];
+%%%%%%%	% labels
+%%%%%%%	\node[align=center, below] at (-0.5,-0.5){activities\\($N=rate \times time$)};
+%%%%%%%	\node[align=center, above] at (1.5,3.098){signal\\($\Delta r=rate_{final}-rate_{init}$)};
+%%%%%%%	\node[align=center, below] at (3.5,-0.5){confidence\\($\delta_{rate,N}$)};
+%%%%%%%	\end{tikzpicture}
+%%%%%%%\end{center}
+%%%%%%%\caption{The number of activities is a product of the rate and time. Signal is
+%%%%%%%the change in event rate we want to detect. Confidence characterizes the uncertainty
+%%%%%%%in our estimate of rate. These parameters are not independent: choose any two and
+%%%%%%%calculate the third. }
+%%%%%%%\label{fig:tradeoff}
+%%%%%%%\end{figure}
+%%%%%%%%
+%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%% hand drawn figure
+%%%%%%%%
+%%%%%%%%\begin{figure}[h]
+%%%%%%%%    	%\centering
+%%%%%%%%	\begin{center}
+%%%%%%%%		\includegraphics[width=1.75in]{./imgs/tradeoff.jpg}
+%%%%%%%%	\end{center}
+%%%%%%%%\caption{The number of events is a product of the rate and time. Signal is
+%%%%%%%%the change in event rate we want to detect. Confidence characterizes the uncertainty
+%%%%%%%%in our estimate of rate. These parameters are not independent: choose any two and
+%%%%%%%%calculate the third. }
+%%%%%%%%\label{fig:tradeoff}
+%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Sources and Licensing} 
+
+For code and example output, please visit and fork or clone \url{https://github.com/DrSkippy/Gravitational-Three-Body-Symmetric}.
+\noindent If you find errorsor have comments, please email scott@drskippy.net.
+\noindent This work is licensed under a Creative Commons CC0 1.0 Universal (CC0 1.0) 
+\noindent \url{http://creativecommons.org/publicdomain/zero/1.0/}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{2013}
+
+\bibitem[Ekeland1990]{Ekeland:1990} Ivar Ekeland. Mathematics and the Unexpected.  \url{http://www.amazon.com/Mathematics-Unexpected-Ivar-Ekeland/dp/0226199908} 1990.
+
+\bibitem[Drexel]{Drexel} The Leapfrog Integrator, \url{http://einstein.drexel.edu/courses/Comp_Phys/Integrators/leapfrog/}.
+
+\end{thebibliography}
+
+\end{document}
