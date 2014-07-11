@@ -20,6 +20,20 @@
 
 \label{sec:intro}
 
+From Ekeland page 59 (paperback edition):
+
+\begin{quote}
+Imagine two stars of equal mass, rotating around their common center of gravity. Newton's law asserts that this is possible, and that the orbit of the two stars will be a circle, along which they travel with equal speed, being exactly opposite to each other at all times. [...] A third body, with very small mass--a comet, for instance--moves along [the axis].
+\end{quote}
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=2.0in]{./img/3body.jpg}
+    \end{center}
+\label{fig:3body}
+\end{figure}
+
+
 Potentials,
 
 \begin{eqnarray}
@@ -47,14 +61,14 @@ Lagrangian,
 \frac{\partial{\mathcal{L}}}{\partial{ \dot{z}}} & = & \mu m \dot{z} \\
 \frac{\partial{\mathcal{L}}}{\partial{ \dot{r}}} & = & 2m\dot{r} \\
 \frac{\partial{\mathcal{L}}}{\partial{ \dot{y}}} & = & 2m\dot{y} \\
-\frac{\partial{\mathcal{L}}}{\partial{ \dot{\theta}}} & = & 2mr^2\dot{\theta} \\
+\frac{\partial{\mathcal{L}}}{\partial{ \dot{\theta}}} & = & 2mr^2\dot{\theta} 
 \end{eqnarray}
 
 \begin{eqnarray}
 \frac{\partial{\mathcal{L}}}{\partial{z}} & = & \frac{2G \mu m^2 (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
 \frac{\partial{\mathcal{L}}}{\partial{r}} & = & 2mr\theta^2 - \frac{G m^2}{r^2} - \frac{2 G \mu m^2 r}{(r^2 + (z-y)^2)^{3/2}} \\
 \frac{\partial{\mathcal{L}}}{\partial{y}} & = & - \frac{2G \mu m^2 (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
-\frac{\partial{\mathcal{L}}}{\partial{\theta}} & = & 0 \\
+\frac{\partial{\mathcal{L}}}{\partial{\theta}} & = & 0 
 \end{eqnarray}
 
 Equations of motion,
@@ -63,10 +77,16 @@ Equations of motion,
 \ddot{z} & = & \frac{2G m (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
 \ddot{y} & = & \frac{G \mu m (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
 \ddot{r} & = & r\dot{\theta}^2 - Gm (\frac{1}{2r^2} + \frac{\mu r}{(r^2 + (z-y)^2)^{3/2}}) \\
-\ddot{\theta} & = & \frac{-2 \dot{r} \dot{\theta}}{r} \\
+\ddot{\theta} & = & \frac{-2 \dot{r} \dot{\theta}}{r} 
 \label{eq:mot}
 \end{eqnarray}
 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[height=7.75in]{./img/example.png}
+    \end{center}
+\label{fig:example}
+\end{figure}
 
 %
 %\begin{table}
@@ -119,22 +139,6 @@ Equations of motion,
 %%%%%%%\label{fig:tradeoff}
 %%%%%%%\end{figure}
 %%%%%%%%
-%%%%%%%%
-%%%%%%%%%%%%
-%%%%%%%
-%%%%%%%%%%%%
-%%%%%%%% hand drawn figure
-%%%%%%%%
-%%%%%%%%\begin{figure}[h]
-%%%%%%%%    	%\centering
-%%%%%%%%	\begin{center}
-%%%%%%%%		\includegraphics[width=1.75in]{./imgs/tradeoff.jpg}
-%%%%%%%%	\end{center}
-%%%%%%%%\caption{The number of events is a product of the rate and time. Signal is
-%%%%%%%%the change in event rate we want to detect. Confidence characterizes the uncertainty
-%%%%%%%%in our estimate of rate. These parameters are not independent: choose any two and
-%%%%%%%%calculate the third. }
-%%%%%%%%\label{fig:tradeoff}
 %%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
