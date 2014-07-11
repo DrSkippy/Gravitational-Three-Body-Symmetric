@@ -13,4 +13,4 @@ sim.py takes two options:
     ./sim.py .1817 290 > data.csv; ./plots.r
 
 
-![alt text][vz.1817_cy290.pdf]
+![vz.1817_cy290.pdf]
