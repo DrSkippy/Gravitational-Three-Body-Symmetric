@@ -6,9 +6,11 @@ Symmetric three body gravitational problem discussed in Ekeland's Mathematics an
 Examples:
 
 sim.py takes two options: 
-    (1) initial velocity of central mass
-    (2) number of years for circling stars
+    1) initial velocity of central mass
+    2) number of years for circling stars
 
     ./sim.py .17 190 > data.csv; ./plots.r
     ./sim.py .1817 290 > data.csv; ./plots.r
 
+
+![alt text][vz.1817_cy290.pdf]
