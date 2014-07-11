@@ -14,4 +14,4 @@ sim.py takes two options:
 
 
 
-![Example Image][example.png]
+![Example Image][/example.png]
