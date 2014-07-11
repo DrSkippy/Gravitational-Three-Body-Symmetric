@@ -4,6 +4,7 @@ library(gridExtra)
 data <- read.csv("./data.csv")
 b = ggplot(data)
 ptsize <- 0.2
+png(filename="./Rplot.png", width=700, height=1200)
 print(
   grid.arrange(
     b + geom_point(aes(r, vr), size=ptsize)
@@ -16,4 +17,4 @@ print(
     , b + geom_point(aes(t, theta), size=ptsize)
     , ncol=2)
   )
-
+dev.off()
