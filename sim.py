@@ -27,6 +27,12 @@ vr = numpy.float64(0.0)
 wrtr.writerow(["t","r","vr","z","vz","y", "vy", "theta","w"]) 
 #
 t = numpy.float64(0.0)
+
+theta += w*dt/.2
+z += vz*dt/2.
+y += vy*dt/2.
+r += vr*dt/2.
+
 for i in range(int(sys.argv[2])*int(2.0*numpy.pi/(w*dt))):
     tmp = numpy.power(r*r + (z-y)*(z-y), -1.5)
     w  += -dt*2.0*vr*w/r
@@ -36,8 +42,9 @@ for i in range(int(sys.argv[2])*int(2.0*numpy.pi/(w*dt))):
     
     theta += w*dt
     theta = numpy.fmod(theta, 2.*numpy.pi)
-    z += vz * dt
-    y += vy * dt
-    r += vr * dt
+    z += vz*dt
+    y += vy*dt
+    r += vr*dt
+
     t += dt
     wrtr.writerow([t, r, vr, z, vz, y, vy, theta, w]) 
