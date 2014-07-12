@@ -26,15 +26,42 @@ From Ekeland page 59 (paperback edition):
 Imagine two stars of equal mass, rotating around their common center of gravity. Newton's law asserts that this is possible, and that the orbit of the two stars will be a circle, along which they travel with equal speed, being exactly opposite to each other at all times. [...] A third body, with very small mass--a comet, for instance--moves along [the axis].
 \end{quote}
 
+%%%%%%%%
 \begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=2.0in]{./img/3body.jpg}
-    \end{center}
-\label{fig:3body}
+\begin{center}
+	%%%%%
+	%
+	% http://cremeronline.com/LaTeX/minimaltikz.pdf
+	%
+	\begin{tikzpicture}[scale=0.9]]
+	% arrows
+	\draw [thick, -] (0, -3) -- (0,4) ;
+	\draw [thick, <->] (0.1, 0) -- (3.1,0) ;
+	%\draw [thick, <->] (-0.1, 0) -- (-3.1,0) ;
+	\draw [thick, <->] (3.5, 0.4) -- (3.5,1.0) ;
+	\draw [thick, <->] (-3.5, 0.4) -- (-0.2,3.0) ;
+	% circles
+	\draw [orange, ultra thick] (0,0) ellipse (3.5 and 1.3);
+	\draw [fill=purple, ultra thick] (0, 3.0) circle [radius=0.1];
+	\draw [fill=green, ultra thick] (3.5,0) circle [radius=0.29];
+	\draw [fill=green, ultra thick] (-3.5,0) circle [radius=0.29];
+	% labels
+	\node[align=center, below] at (1.75,0.4){$r$};
+	\node[align=center, below] at (3.7,0.9){$y$};
+	\node[align=center, below] at (0.2,2){$z$};
+	\node[align=center, below] at (3.5,-0.5){$m$};
+	\node[align=center, below] at (-3.5,-0.5){$m$};
+	\node[align=center, below] at (0.4,3.05){$\mu m$};
+	\node[align=center, below] at (-2.7,2.5){$\sqrt{r^2 + (z-y)^2}$};
+	\end{tikzpicture}
+\end{center}
+\caption{Two stars of the same mass $m$ travel in a circular orbit along with a small comet on the centerline with an initial velocity along the z-axis. The system has cylindrical symmetry so that the plain containing the stars moves as a single unit and the comet does not leave the axis. }
+\label{fig:tradeoff}
 \end{figure}
+%%%%%%%%
 
-
-Potentials,
+Gravitational potentials from the interactions of the 3 masses. The first term is the interaction of the
+stars while the second term is the sum of the interactions of the comet with each of the stars.
 
 \begin{eqnarray}
 U_{m m} & = & \frac{-Gmm}{2r} \\
@@ -42,20 +69,22 @@ U_{\mu m} & = & \frac{-2G\mu mm}{\sqrt{r^2 + (z-y)^2}} \\
 \label{eq:potentials}
 \end{eqnarray}
 
-Kinetic Energy,
+Kinetic energy terms represent radial, circular and motion along the axis.
 
 \begin{eqnarray}
 T & = & \frac{1}{2} \mu m \dot{z}^2 + m \dot{y}^2 + m \dot{r}^2 + m(r\dot{\theta})^2
 \label{eq:potentials}
 \end{eqnarray}
 
-Lagrangian,
+Lagrangian.
 
 \begin{eqnarray}
 \mathcal{L} & = & T - V \\
 & = & \frac{1}{2} \mu m \dot{z}^2 + m \dot{y}^2 + m \dot{r}^2 + m(r\dot{\theta})^2 + \frac{-Gmm}{2r} +  \frac{-2G\mu mm}{\sqrt{r^2 + (z-y)^2}}
 \label{eq:potentials}
 \end{eqnarray}
+
+Partial derivatives with respect to velocities and postitions.
 
 \begin{eqnarray}
 \frac{\partial{\mathcal{L}}}{\partial{ \dot{z}}} & = & \mu m \dot{z} \\
@@ -80,6 +109,9 @@ Equations of motion,
 \ddot{\theta} & = & \frac{-2 \dot{r} \dot{\theta}}{r} 
 \label{eq:mot}
 \end{eqnarray}
+
+\noindent can be rewritten as a system of $1^{st}$ differential equations and integrated with a ``Leap frog'' integrator. This
+preserves phase space topology.
 
 \begin{figure}[h]
     \begin{center}
@@ -110,36 +142,8 @@ Equations of motion,
 %\section{Sigmoid Model}
 %\label{sec:sigmodel}
 %
-%%%%%%%%
-%%%%%%%\begin{figure}[h]
-%%%%%%%\begin{center}
-%%%%%%%	%%%%%
-%%%%%%%	%
-%%%%%%%	% http://cremeronline.com/LaTeX/minimaltikz.pdf
-%%%%%%%	%
-%%%%%%%	\begin{tikzpicture}[scale=1.1]]
-%%%%%%%	% arrows
-%%%%%%%	\draw [thick, <->] (0.25000000000000006, 0.4330127018922193) -- (1.25, 2.165063509461097) ;
-%%%%%%%	\draw [thick, <->] (1.75, 2.165063509461097) -- (2.75, 0.4330127018922193) ;
-%%%%%%%	\draw [thick, <->] (2.5, 0) -- (0.5, 0) ;
-%%%%%%%	% circles
-%%%%%%%	\draw [orange, ultra thick] (0,0) circle [radius=0.5];
-%%%%%%%	\draw [yellow, ultra thick] (1.5,2.598) circle [radius=0.5];
-%%%%%%%	\draw [green, ultra thick] (3,0) circle [radius=0.5];
-%%%%%%%	% labels
-%%%%%%%	\node[align=center, below] at (-0.5,-0.5){activities\\($N=rate \times time$)};
-%%%%%%%	\node[align=center, above] at (1.5,3.098){signal\\($\Delta r=rate_{final}-rate_{init}$)};
-%%%%%%%	\node[align=center, below] at (3.5,-0.5){confidence\\($\delta_{rate,N}$)};
-%%%%%%%	\end{tikzpicture}
-%%%%%%%\end{center}
-%%%%%%%\caption{The number of activities is a product of the rate and time. Signal is
-%%%%%%%the change in event rate we want to detect. Confidence characterizes the uncertainty
-%%%%%%%in our estimate of rate. These parameters are not independent: choose any two and
-%%%%%%%calculate the third. }
-%%%%%%%\label{fig:tradeoff}
-%%%%%%%\end{figure}
-%%%%%%%%
-%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
