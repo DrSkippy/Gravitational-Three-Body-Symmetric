@@ -100,7 +100,7 @@ Partial derivatives with respect to velocities and postitions.
 \frac{\partial{\mathcal{L}}}{\partial{\theta}} & = & 0 
 \end{eqnarray}
 
-Equations of motion,
+\section{Equations of motion}
 
 \begin{eqnarray}
 \ddot{z} & = & \frac{2G m (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
@@ -110,7 +110,7 @@ Equations of motion,
 \label{eq:mot}
 \end{eqnarray}
 
-\noindent can be rewritten as a system of $1^{st}$ differential equations and integrated with a ``Leap frog'' integrator. This
+Rewrite as a system of $1^{st}$ differential equations and integrated with a ``Leap frog'' integrator. This
 preserves phase space topology.
 
 \begin{figure}[h]
@@ -119,6 +119,29 @@ preserves phase space topology.
     \end{center}
 \label{fig:example}
 \end{figure}
+
+\section{Escape Velocity}
+
+Energy at $z=0$ is the energy at $z=\infty$,
+
+\begin{eqnarray}
+\frac{1}{2}\mu m v_0^2 - \frac{2G \mu m^2}{r} & = & \frac{1}{2}\mu m (0)^2 - \frac{2G \mu m^2}{(\infty)} \\
+v_0 & = & \sqrt{\frac{4Gm}{r}} \\
+v_0 & = & \sqrt{\frac{4(4.302e^-3 \text{pc sun}^{-1} (\frac{km}{s})^2) (1 \text{ sun})}{0.5 \text{ pc}}} \\
+& \approx & 0.185515 \frac{km}{s}
+\label{eq:esc}
+\end{eqnarray}
+
+\section{Small z}
+
+For small z, $\tan{z/r} \approx z/r$ and r is constant,
+
+\begin{eqnarray}
+\mu m \ddot{z} & = &  - \frac{2G \mu m^2}{r^2} \frac{z}{r} \\
+T & = & 2\pi \sqrt{\frac{2G \mu m^2}{r^3}} \\
+& \approx & 23.94885 \text{  time units}
+\label{eq:small}
+\end{eqnarray}
 
 %
 %\begin{table}

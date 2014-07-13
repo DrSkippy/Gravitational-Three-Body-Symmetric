@@ -11,6 +11,7 @@ sim.py takes two options:
     2) number of years for circling stars
 
     ./sim.py .17 190 > data.csv; ./plots.r
+    ./sim.py .15129 40 > data.csv; ./plots.r
     ./sim.py .1817 290 > data.csv; ./plots.r
 
 
