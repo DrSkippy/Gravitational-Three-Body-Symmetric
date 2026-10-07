@@ -279,7 +279,7 @@ class SymmetricThreeBody(DynamicalSystem):
     Sitnikov problem; with ``eccentricity = 0`` the comet's motion is
     integrable.
 
-    Default units follow the original script: parsec, km/s, solar masses,
+    Default units are parsec, km/s and solar masses,
     so the time unit is ~0.978 Myr.
 
     Attributes:
@@ -429,7 +429,6 @@ class SymmetricThreeBody(DynamicalSystem):
         self, t: FloatArray, q: FloatArray, v: FloatArray
     ) -> dict[str, FloatArray]:
         rho, vr, theta, w = self._polar(q, v)
-        # Same columns (and order) as the original sim_3body.py output.
         return {
             "t": t,
             "r": rho,

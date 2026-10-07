@@ -53,7 +53,7 @@ Usage
 ```bash
 threebody demo                    # every demo below + runs/demos/index.html gallery
 threebody demo figure8 --show     # one demo, opened in the browser
-threebody symmetric --v0 0.1817 --periods 290           # the old ./sim.py .1817 290
+threebody symmetric --v0 0.1817 --periods 290           # quasi-periodic comet
 threebody symmetric --ratio 3 --periods 30              # solve v0 for a 3:1 resonance
 threebody symmetric --v0 0.156 --ecc 0.2 --periods 300  # Sitnikov (eccentric binary)
 threebody symmetric --v0 0.167 --mu 0.1 --periods 300   # heavy comet
@@ -74,8 +74,8 @@ Each run directory contains:
 
 | file | contents |
 |---|---|
-| `trajectory.csv` | sampled state. For the symmetric problem the columns are the original `t, r, vr, z, vz, y, vy, theta, w` |
-| `events.csv` | every section crossing (comet through the stellar plane, binary phase 0, …), state interpolated to the crossing, `interval` since the previous one (the old `returnmap.csv`) |
+| `trajectory.csv` | sampled state. For the symmetric problem the columns are `t, r, vr, z, vz, y, vy, theta, w` |
+| `events.csv` | every section crossing (comet through the stellar plane, binary phase 0, …), state interpolated to the crossing, `interval` since the previous one |
 | `lyapunov.csv` | running finite-time maximal Lyapunov exponent |
 | `summary.json` | parameters, invariant drift, speed and distance statistics, periods, chaos diagnostics |
 | `dashboard.html` | the interactive page (`plotly.min.js` is written once beside it, so it works offline) |
@@ -97,7 +97,7 @@ Demos
 | `sho` | verification run against the exact solution | regular |
 | `ekeland-coil` | comet period = 3 binary periods; v0 solved by quadrature | periodic |
 | `ekeland-weave` | 2:5 resonance: a closed five-lobed weave on the stellar cylinder | periodic |
-| `ekeland-quasiperiodic` | the README's original v0 = 0.1817 | quasi-periodic |
+| `ekeland-quasiperiodic` | v0 = 0.1817: an irrational period ratio | quasi-periodic |
 | `sitnikov-chaos` | eccentric binary, e = 0.2 | chaotic |
 | `heavy-comet` | comet mass 0.1 M; binary breathes, plane recoils | chaotic |
 | `broken-symmetry` | Ekeland's set-up as a full 3D N-body problem, comet 0.001 off-axis: it is flung out sideways | chaotic |
@@ -137,23 +137,6 @@ Diagnostics:
 * **Spectral entropy and closest return:** quick indicators of a line
   spectrum versus a broadband spectrum, and of periodicity.
 
-### Bugs fixed in the original `sim_3body.py`
-
-1. The star–star force used `G M / (2 r²)`; the stars are `2r` apart, so it
-   is `G M / (4 r²)`. The binary orbited √2 too fast.
-2. The stellar-plane recoil used `vy += -dt * mu/2 * vz` (a velocity, not
-   an acceleration). The correct form is `vy += dt * G M mu (z - y) / d³`.
-3. The leapfrog half-step for θ was `w*dt/.2` (5 dt), not `w*dt/2`.
-4. The θ equation `w += -2 dt vr w / r` depends on a velocity, so the scheme
-   in polar coordinates was not symplectic, and positions at half steps
-   were printed next to velocities at whole steps.
-5. Python 2 only (`print >>`, CSV opened as `"wb"`), and `numpy.float` no
-   longer exists.
-
-The spring pendulum script had two more: `v_l +=` was missing its `* dt`,
-and the swing equation lacked the Coriolis term `-2 l̇ θ̇ / l`. It now
-integrates in 3D Cartesian coordinates.
-
 Verification
 ------------
 
@@ -179,10 +162,3 @@ Development
 ```bash
 black src tests && ruff check src tests && mypy && pytest
 ```
-
-Example run (original version)
-==============================
-
-Vz = 0.1817, time = 290 periods
-
-![alt text](/img/example.png "Example")

@@ -30,8 +30,7 @@ def test_circular_binary_stays_circular() -> None:
 
 
 def test_binary_force_uses_full_separation() -> None:
-    # Regression for the original script's G M / (2 r^2) radial force: the
-    # binary period must be Kepler's for separation 2 r0 and total mass 2 M.
+    # The binary period must be Kepler's for separation 2 r0 and total mass 2 M.
     model = SymmetricThreeBody(mu=0.0, eccentricity=0.3)
     res = simulate(model, SimulationConfig(periods=10, lyapunov=False))
     phase0 = res.events.select(1, 1.0).t
@@ -98,7 +97,7 @@ def test_conservation_with_heavy_comet() -> None:
     assert np.max(np.abs(axial)) < 1e-14
 
 
-def test_original_csv_columns() -> None:
+def test_trajectory_csv_columns() -> None:
     model = SymmetricThreeBody()
     q, v = model.initial_state()
     cols = model.columns(np.zeros(1), q[None], v[None])

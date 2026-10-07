@@ -34,8 +34,7 @@ def event_columns(result: SimulationResult) -> dict[str, FloatArray]:
         cols = system.columns(
             np.zeros(0), np.zeros((0, q0.size)), np.zeros((0, v0.size))
         )
-    # Interval since the previous event of the same id and direction (the
-    # "period" column of the original returnmap.csv).
+    # Interval since the previous event of the same id and direction.
     interval = np.full(len(ev), np.nan)
     for e in np.unique(ev.event_id):
         for d in (-1.0, 1.0):
