@@ -20,11 +20,32 @@ finite-time Lyapunov exponent.
 Install
 -------
 
-Requires Python 3.13.
+Requires Python 3.13. The install puts a `threebody` command into the
+project's virtual environment, `.venv/bin/`, which is only on your `PATH`
+while that environment is activated.
 
 ```bash
-uv venv --python 3.13 && uv pip install -e ".[dev]"   # or: pip install -e ".[dev]"
+uv venv --python 3.13
+uv pip install -e ".[dev]"
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+threebody verify
 ```
+
+Without activating, run it through uv or by path:
+
+```bash
+uv run threebody verify            # or: .venv/bin/threebody verify
+```
+
+To have `threebody` on your `PATH` everywhere, without a virtual environment
+to activate, install it as a uv tool (it lands in `~/.local/bin`; run
+`uv tool update-shell` once if that directory is not on your `PATH`):
+
+```bash
+uv tool install --python 3.13 -e .
+```
+
+With plain pip: `python3.13 -m venv .venv && source .venv/bin/activate && pip install -e ".[dev]"`.
 
 Usage
 -----
