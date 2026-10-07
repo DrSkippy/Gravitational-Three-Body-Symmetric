@@ -57,3 +57,12 @@ docs/_build/
 *.log
 *.out
 *.aux
+
+# Virtual environments and tooling
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Simulation outputs
+runs/

@@ -80,7 +80,7 @@ Lagrangian.
 
 \begin{eqnarray}
 \mathcal{L} & = & T - V \\
-& = & \frac{1}{2} \mu m \dot{z}^2 + m \dot{y}^2 + m \dot{r}^2 + m(r\dot{\theta})^2 + \frac{-Gmm}{2r} +  \frac{-2G\mu mm}{\sqrt{r^2 + (z-y)^2}}
+& = & \frac{1}{2} \mu m \dot{z}^2 + m \dot{y}^2 + m \dot{r}^2 + m(r\dot{\theta})^2 + \frac{Gmm}{2r} +  \frac{2G\mu mm}{\sqrt{r^2 + (z-y)^2}}
 \label{eq:potentials}
 \end{eqnarray}
 
@@ -94,24 +94,34 @@ Partial derivatives with respect to velocities and postitions.
 \end{eqnarray}
 
 \begin{eqnarray}
-\frac{\partial{\mathcal{L}}}{\partial{z}} & = & \frac{2G \mu m^2 (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
-\frac{\partial{\mathcal{L}}}{\partial{r}} & = & 2mr\theta^2 - \frac{G m^2}{r^2} - \frac{2 G \mu m^2 r}{(r^2 + (z-y)^2)^{3/2}} \\
-\frac{\partial{\mathcal{L}}}{\partial{y}} & = & - \frac{2G \mu m^2 (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
+\frac{\partial{\mathcal{L}}}{\partial{z}} & = & -\frac{2G \mu m^2 (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
+\frac{\partial{\mathcal{L}}}{\partial{r}} & = & 2mr\dot{\theta}^2 - \frac{G m^2}{2r^2} - \frac{2 G \mu m^2 r}{(r^2 + (z-y)^2)^{3/2}} \\
+\frac{\partial{\mathcal{L}}}{\partial{y}} & = & \frac{2G \mu m^2 (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
 \frac{\partial{\mathcal{L}}}{\partial{\theta}} & = & 0 
 \end{eqnarray}
 
 \section{Equations of motion}
 
 \begin{eqnarray}
-\ddot{z} & = & \frac{2G m (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
+\ddot{z} & = & -\frac{2G m (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
 \ddot{y} & = & \frac{G \mu m (z-y)}{(r^2 + (z-y)^2)^{3/2}} \\
-\ddot{r} & = & r\dot{\theta}^2 - Gm (\frac{1}{2r^2} + \frac{\mu r}{(r^2 + (z-y)^2)^{3/2}}) \\
+\ddot{r} & = & r\dot{\theta}^2 - Gm (\frac{1}{4r^2} + \frac{\mu r}{(r^2 + (z-y)^2)^{3/2}}) \\
 \ddot{\theta} & = & \frac{-2 \dot{r} \dot{\theta}}{r} 
 \label{eq:mot}
 \end{eqnarray}
 
-Rewrite as a system of $1^{st}$ differential equations and integrated with a ``Leap frog'' integrator. This
-preserves phase space topology.
+(Corrections, 2026: the signs of $\partial\mathcal{L}/\partial z$, $\partial\mathcal{L}/\partial y$ and $\ddot z$
+were reversed, and the star--star term in $\ddot r$ is $Gm/(4r^2)$, not $Gm/(2r^2)$, because the stars
+are $2r$ apart. The original code had the latter error, so its binary orbited $\sqrt{2}$ too fast.)
+
+The code integrates these equations in the Cartesian coordinates $(X, Y) = r(\cos\theta, \sin\theta)$
+of one star, together with $y$ and $z$. The kinetic energy is then diagonal,
+$T = m(\dot X^2 + \dot Y^2 + \dot y^2) + \tfrac12\mu m \dot z^2$, so the Hamiltonian is separable and
+the leapfrog (and its Yoshida 4th/6th-order compositions) is exactly symplectic. In the polar form above
+$\ddot\theta$ depends on $\dot r$, and a leapfrog in those variables is not symplectic.
+
+The binary period is that of a Kepler orbit with separation $2r$ and total mass $2m$,
+$T_b = 2\pi\sqrt{4 r^3/(G m)}$.
 
 \begin{figure}[h]
     \begin{center}
@@ -138,7 +148,7 @@ For small z, $\tan{z/r} \approx z/r$ and r is constant,
 
 \begin{eqnarray}
 \mu m \ddot{z} & = &  - \frac{2G \mu m^2}{r^2} \frac{z}{r} \\
-T & = & 2\pi \sqrt{\frac{2G \mu m^2}{r^3}} \\
+T & = & 2\pi \sqrt{\frac{r^3}{2G m}} \\
 & \approx & 23.94885 \text{  time units}
 \label{eq:small}
 \end{eqnarray}
