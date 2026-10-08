@@ -128,8 +128,8 @@ DEMOS: dict[str, Demo] = {
         animate_periods=4.0,
     ),
     "ekeland-quasiperiodic": Demo(
-        "Ekeland's original run (v0 = 0.1817)",
-        "The README's example: an irrational period ratio, so the comet's trace "
+        "Ekeland's comet, quasi-periodic (v0 = 0.1817)",
+        "An irrational period ratio, so the comet's trace "
         "fills a band on the stellar cylinder without closing. Regular, not chaotic.",
         lambda: SymmetricThreeBody(v0=0.1817),
         SimulationConfig(periods=300, steps_per_period=1500),
